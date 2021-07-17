@@ -9,7 +9,8 @@
     "test": "midway-bin test --ts",
     "cov": "midway-bin cov --ts",
     "lint": "mwts check",
-    "lint:fix": "mwts fix"
+    "lint:fix": "mwts fix",
+    "push": "tsc ;npm publish --access public"
   },
   "keywords": [
     "midway",

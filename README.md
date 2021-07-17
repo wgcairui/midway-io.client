@@ -48,6 +48,8 @@ export class IOClientControll {
 }
 ```
 
+[midway文档](https://www.yuque.com/midwayjs/midway_v2)
+
 配置 src/config/*.ts
 
 ```
