@@ -4,6 +4,10 @@
 ### midway自定义组件
 #### socket.io-client组件,暴露常用的装饰器
 
+```
+npm i -S @cairui/midway-io.client
+```
+
 *@IOControll()*
 
 *@OnConnection()*

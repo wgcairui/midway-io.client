@@ -1,8 +1,11 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "target": "ES2018",
+    "target": "ES2020",
     "module": "commonjs",
+    "lib": [
+      "ES2019.Array"
+    ],
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

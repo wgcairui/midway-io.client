@@ -26,7 +26,10 @@ export class AutoConfiguration {
 
   async onStop(ctx: any, app: IMidwayApplication) {
     const socket = await app.getApplicationContext().getAsync(ioClient)
+    socket.io.disconnect()
     socket.io.close()
+    console.log('socket disconnect', socket.io.disconnected);
+
   }
 
   /**
@@ -36,7 +39,6 @@ export class AutoConfiguration {
    */
   private async addEmint(app: IMidwayApplication, target: any, providerId: string) {
     const IOEvents: IOEventInfo[] = getClassMetadata(IO_EVENT_KEY, target)
-    console.log({ IOEvents });
     // 控制器controll
     const controller = await app.getApplicationContext().getAsync(providerId) as any
 
@@ -52,8 +54,8 @@ export class AutoConfiguration {
           {
             // 监听断开,执行disconnecting操作
             socket.io.on("connect", () => {
-              console.log('connect');
-              
+              console.log('socket.io connecting');
+
               const result = controller[event.propertyName].apply(controller)
               this.bindSocketResponse(result, socket, event.propertyName, methodMap)
             })
@@ -107,7 +109,7 @@ export class AutoConfiguration {
           switch (IOEventInfo.eventType) {
             case IOEventTypeEnum.EMIT:
               {
-                socket.io.emit(IOEventInfo.messageEventName!, result)
+                socket.io.emit(IOEventInfo.messageEventName!, ...[result].flat())
               }
               break;
           }
